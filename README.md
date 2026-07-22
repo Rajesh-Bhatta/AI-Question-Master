@@ -1,0 +1,72 @@
+# 🤖 AI Question Master
+
+Transform your documents and text into interactive learning materials using state-of-the-art Transformer models. This project provides an end-to-end pipeline for generating high-quality MCQs, study guides, and an interactive Q&A assistant.
+
+## 🚀 Key Features
+
+- **📄 Multi-Source Input**: Support for raw text pasting, PDF (including multi-column layouts), and TXT files.
+- **🎮 Interactive Quiz**: Automatically generates Multiple Choice Questions (MCQs) with plausible distractors and real-time feedback.
+- **📖 Study Guide**: Unified view of key facts extracted from text and exploratory questions with revealable answers.
+- **💡 Smart Assistant**: A chat-style interface for asking custom questions about your documents with hallucination detection.
+- **⚡ Unified UI**: Single-click generation for all models (Answer-Aware, End-to-End, and QA).
+- **🛠️ Robust Extraction**: Uses `pdfplumber` for layout-aware text extraction from complex PDFs.
+
+## 🛠️ Setup & Installation
+
+### 1. Create a Virtual Environment
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 2. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Run the Application
+```bash
+streamlit run app.py
+```
+The app will be available at `http://localhost:8501`.
+
+## 🧠 Project Architecture
+
+This project utilizes fine-tuned **T5 (Text-to-Text Transfer Transformer)** models for multiple NLP tasks:
+
+1.  **Answer Extraction**: Identifies candidate answer spans within the context.
+2.  **Question Generation (QG)**: Generates questions specifically tailored to the extracted answers using the "Highlight" format.
+3.  **End-to-End QG**: Generates broader, exploratory questions directly from the context.
+4.  **Question Answering (QA)**: Provides answers to both generated and user-defined questions.
+
+### MCQ Generation Logic
+Distractors are generated using a multi-step heuristic:
+-   **WordNet Integration**: Finds semantically related "cousin" words (hyponyms of shared hypernyms).
+-   **Contextual Fallback**: Uses other potential answers found in the document.
+-   **Smart Fillers**: Logical placeholders for edge cases.
+
+## 📂 Project Structure
+
+- `app.py`: The primary Streamlit UI and application logic.
+- `pipelines.py`: Core inference logic for all QG and QA tasks.
+- `utils.py`: Utility functions for data processing and distractor generation.
+- `notebooks/`: Exploration and training notebooks.
+- `requirements.txt`: List of required Python packages.
+
+## 🤝 Contributing
+
+1. Fork the repository.
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
+
+## 📝 Usage Tips
+
+-   **Context Length**: For best results, use paragraphs of 3-5 sentences.
+-   **PDF Quality**: Ensure PDFs are text-based (not scanned images) for accurate extraction.
+-   **Settings**: Use the "Max Questions" slider to control the volume of generated content.
+
+## 📜 Acknowledgments
+
+This project is built using the 🤗 [Transformers](https://github.com/huggingface/transformers) library and Streamlit.

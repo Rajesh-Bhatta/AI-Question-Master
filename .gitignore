@@ -1,0 +1,56 @@
+# # Python environment
+# venv/
+# .env
+# __pycache__/
+# *.py[cod]
+# *$py.class
+
+# # IDEs
+# .vscode/
+# .idea/
+
+# # OS files
+# .DS_Store
+# Thumbs.db
+
+# # Project specific
+# nltk_data/
+# data/squad_multitask/dummy/
+# data/squad_multitask/dataset_infos.json
+# data/squad_multitask/*.lock
+# *.pt
+# *.bin
+# *.out
+# *.log
+
+# Virtual environments
+.venv/
+venv/
+env/
+product/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDEs
+.vscode/
+.idea/
+
+# Environment
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+nltk_data/
+data/squad_multitask/dummy/
+data/squad_multitask/dataset_infos.json
+data/squad_multitask/*.lock
+*.pt
+*.bin
+*.out
+*.log

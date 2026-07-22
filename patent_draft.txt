@@ -1,0 +1,68 @@
+National Institute of Technology Rourkela
+Invention and Technology Disclosure Form
+
+For Office use only
+Proposal ID: ____________________ 
+
+NITR/IP/_____-___/___________     Date of receipt: ________________ 
+Acad yr          Sl. No. 
+1. Title of the invention: AI-POWERED SYSTEM FOR AUTOMATED QUESTION AND ANSWER GENERATION FROM TEXTUAL CONTENT
+
+2. Inventors: 
+[Please fill in the details for all inventors.]
+SI No. NameEmployee code or Roll NoPositionDepartmentEmail1.[Inventor 1 Name][Code]Intern/Student/Professor[Department][Email]2.[Inventor 2 Name][Code]Intern/Student/Professor[Department][Email]
+
+3. Brief description of the invention: (How this invention relates to new processes, systems, machines, compositions of matter, etc.) 
+
+The present invention is an advanced content analysis system that automatically generates questions and corresponding answers from a given body of text. This system leverages sophisticated transformer-based deep learning models to understand the context and semantics of the input text, enabling it to create relevant and coherent question-answer pairs. The core of the invention is a flexible pipeline that can be configured for both single-task (question generation) and multi-task (question generation and question answering) operations. By processing textual data, the system identifies key information and formulates questions that test comprehension and highlight important concepts, effectively automating a critical aspect of educational and training material creation.
+
+4. Detailed description of the invention 
+4.1  State of prior art 
+(a) Prevailing state of the art
+
+Automated question generation is a growing field within Natural Language Processing (NLP). Current technologies include:
+- Rule-based Systems: Early approaches that use manually created linguistic rules to transform declarative sentences into questions. These are often brittle and not scalable.
+- Statistical Methods: Systems that learn statistical patterns from large text corpora to generate questions.
+- Early Neural Networks: Use of Recurrent Neural Networks (RNNs) and LSTMs to generate questions, showing improvement over older methods.
+- Pre-trained Transformer Models: Modern systems (like GPT, BERT, T5) that are pre-trained on vast amounts of text and can be fine-tuned for question generation. While powerful, many implementations are research-focused and not integrated into a user-friendly, multi-task pipeline.
+
+(b) Literature search relating to this invention [Please include a copy of the resulting documentation, and reprints of publications.]
+
+[This section would typically include a review of academic papers and existing products related to question generation, similar to the example you provided. We can add specific papers on T5, BERT, and other transformer models for QG here.]
+
+(c) Prior art/patent search relating to this invention [Please give the web site details and the Key Words used in the search.]
+
+[A search for patents related to "question generation," "natural language processing for education," and "transformer models for text generation" would be conducted here. The goal is to show that while components exist, the integrated system is novel.]
+
+4.2 Description: (Describe the invention so that other expert who are knowledgeable in the field can evaluate its technical and commercial merits.)
+
+The system is implemented as a software pipeline, built using Python and the 'transformers' library. 
+1.  **Input**: The user provides a block of text (the context).
+2.  **Processing**: The text is passed to the core pipeline. The pipeline is initialized with a specific model, for example, a fine-tuned T5 model like "valhalla/t5-base-qg-hl".
+3.  **Model Architecture**: The underlying model is a transformer-based sequence-to-sequence model. It has been trained to read a context and generate a "question <sep> answer" string.
+4.  **Output Generation**: The pipeline code parses the model's output, splitting the generated string into a structured question and its corresponding answer.
+5.  **Multi-Task Capability**: The pipeline can also be configured in a "multitask-qa-qg" mode. In this mode, it can either generate questions from a context or, if given a context and a question, provide an answer. This dual functionality is a key feature of the system.
+
+The entire process is encapsulated, allowing a user to generate content with a few lines of code, abstracting away the complexity of model loading, tokenization, and inference.
+
+4.3 Novelty: (Highlight the features described above that make the invention novel.) 
+- **Unified Multi-Task Pipeline**: A single, streamlined pipeline that seamlessly handles both question generation (QG) and question answering (QA) tasks, which are often treated as separate processes in other systems.
+- **Model Agnosticism**: The pipeline is architected to be flexible, allowing different pre-trained transformer models to be easily swapped in and out, enabling adaptation to various complexity and domain needs.
+- **Abstraction for Usability**: The invention encapsulates the complex, multi-step process of AI-based question generation into a simple, high-level programming interface, making the technology accessible to a broader range of applications and developers.
+- **Potential for Domain-Specific Adaptation**: The architecture allows for fine-tuning on custom datasets (e.g., legal texts, medical journals, specific corporate training materials) to produce highly specialized and relevant question-answer pairs, a feature not explicitly available in general-purpose models.
+
+4.4 Inventiveness: (Are the novel features inventive based on 4.1(a) above; and, if so how?)
+
+[This section will argue that the combination of the above novel features is not an obvious step and provides a synergistic advantage over the prior art.]
+
+4.5 Advantages (over comparable inventions or practices):
+- **Efficiency**: Drastically reduces the time and effort required for educators, content creators, and trainers to create quizzes, FAQs, and learning materials.
+- **Scalability**: Can process vast amounts of text to generate thousands of questions automatically, a task that is infeasible for humans.
+- **Consistency**: Ensures a consistent quality and style of questions, based on the trained model.
+- **Enhanced Learning**: Provides an interactive way for users to engage with textual content, improving comprehension and retention.
+- **Cost-Effective**: Reduces the man-hours needed for content creation and assessment development.
+
+4.6 Testing: (Has the invention been tested experimentally?)
+Yes, the invention has been tested as demonstrated in the associated Jupyter Notebook (`question_generation.ipynb`). The system successfully generates relevant questions and answers from various sample texts, demonstrating the viability of both the single-task and multi-task pipelines.
+
+[The rest of the sections (Funding, Commercial potential, etc.) will be filled out based on your specific circumstances.]
