@@ -2,6 +2,10 @@
 
 Transform your documents and text into interactive learning materials using state-of-the-art Transformer models. This project provides an end-to-end pipeline for generating high-quality MCQs, a dedicated timed quiz screen, study guides, and an interactive Q&A assistant.
 
+## 🌐 Live Demo
+
+Try the hosted app here: https://ai-question-master.streamlit.app/
+
 ## 🚀 Key Features
 
 - **📄 Multi-Source Input**: Support for raw text pasting, PDF (including multi-column layouts), and TXT files.
@@ -31,6 +35,8 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 The app will be available at `http://localhost:8501`.
+
+Live hosted app: https://ai-question-master.streamlit.app/
 
 If you are using Windows PowerShell and the project virtual environment, activate it first:
 ```powershell
