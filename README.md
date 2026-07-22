@@ -1,11 +1,13 @@
 # 🤖 AI Question Master
 
-Transform your documents and text into interactive learning materials using state-of-the-art Transformer models. This project provides an end-to-end pipeline for generating high-quality MCQs, study guides, and an interactive Q&A assistant.
+Transform your documents and text into interactive learning materials using state-of-the-art Transformer models. This project provides an end-to-end pipeline for generating high-quality MCQs, a dedicated timed quiz screen, study guides, and an interactive Q&A assistant.
 
 ## 🚀 Key Features
 
 - **📄 Multi-Source Input**: Support for raw text pasting, PDF (including multi-column layouts), and TXT files.
-- **🎮 Interactive Quiz**: Automatically generates Multiple Choice Questions (MCQs) with plausible distractors and real-time feedback.
+- **🎮 Dedicated Quiz Screen**: Opens quiz mode in a separate UI with question count, timer setup, auto-submit, and score review.
+- **⏱️ Timed Quiz**: Countdown timer decreases live and automatically submits when it reaches zero.
+- **✅ Answer Review**: Shows the correct option, the user’s selected option, and the final score after submission.
 - **📖 Study Guide**: Unified view of key facts extracted from text and exploratory questions with revealable answers.
 - **💡 Smart Assistant**: A chat-style interface for asking custom questions about your documents with hallucination detection.
 - **⚡ Unified UI**: Single-click generation for all models (Answer-Aware, End-to-End, and QA).
@@ -30,6 +32,11 @@ streamlit run app.py
 ```
 The app will be available at `http://localhost:8501`.
 
+If you are using Windows PowerShell and the project virtual environment, activate it first:
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
 ## 🧠 Project Architecture
 
 This project utilizes fine-tuned **T5 (Text-to-Text Transfer Transformer)** models for multiple NLP tasks:
@@ -38,6 +45,7 @@ This project utilizes fine-tuned **T5 (Text-to-Text Transfer Transformer)** mode
 2.  **Question Generation (QG)**: Generates questions specifically tailored to the extracted answers using the "Highlight" format.
 3.  **End-to-End QG**: Generates broader, exploratory questions directly from the context.
 4.  **Question Answering (QA)**: Provides answers to both generated and user-defined questions.
+5.  **Timed Quiz Flow**: Moves selected generated questions into a dedicated quiz screen with live countdown and auto-submit.
 
 ### MCQ Generation Logic
 Distractors are generated using a multi-step heuristic:
@@ -53,6 +61,16 @@ Distractors are generated using a multi-step heuristic:
 - `notebooks/`: Exploration and training notebooks.
 - `requirements.txt`: List of required Python packages.
 
+## 🧪 Quiz Flow
+
+1. Paste text or upload a document.
+2. Click `Generate Everything` to create questions.
+3. Click `Take Quiz` to open the dedicated quiz page.
+4. Set the number of questions and the timer.
+5. Start the quiz and answer the questions before the timer reaches zero.
+6. Submit manually or let the app auto-submit when time runs out.
+7. Review your score, selected answers, and correct answers.
+
 ## 🤝 Contributing
 
 1. Fork the repository.
@@ -66,6 +84,8 @@ Distractors are generated using a multi-step heuristic:
 -   **Context Length**: For best results, use paragraphs of 3-5 sentences.
 -   **PDF Quality**: Ensure PDFs are text-based (not scanned images) for accurate extraction.
 -   **Settings**: Use the "Max Questions" slider to control the volume of generated content.
+-   **Quiz Mode**: Use `Take Quiz` to switch into the dedicated timed quiz screen.
+-   **Timer**: The quiz auto-submits when time reaches zero, so keep an eye on the countdown.
 
 ## 📜 Acknowledgments
 
