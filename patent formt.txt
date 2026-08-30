@@ -1,303 +1,0 @@
-`National Institute of Technology Rourkela
-Invention and Technology Disclosure Form
-
-For Office use only
-Proposal ID: ____________________ 
-
-NITR/IP/_____-___/___________     Date of receipt: ________________ 
-Acad yr          Sl. No. 
-1. Title of the invention: INTEGRATED EMPLOYEE AND VISITOR GATE ACCESS CONTROL SYSTEM
-2. Inventors: 
-[For visiting scientists, please give details of the substantive employer.]
-SI No. NameEmployee code or Roll NoPositionDepartmentEmail1. Majji Venkata Surya Tej322103312112InternElectronics & Communicationmvs.majji@gmail.com2.Jahed Khan322103312077InternElectronics & CommunicationJahedkhan1011@gmail.com3. Manchiraju Manas322103312115InternElectronics & Communicationmanasmanchiraju23@gmail.com4.Soumya Ranjan Sahu,523EC1004Research ScholarElectronics & Communication523ec1004@nitrkl.ac.in5Ajit Kumar Sahoo1070850Associate ProfessorElectronics & Communicationajitsahoo@nitrkl.ac.in5. Santos Kumar Das1090940Associate ProfessorElectronics & Communicationdassk@nitrkl.ac.in
-3. Brief description of the invention: (How this invention relates to new processes, systems, machines, compositions of matter, etc.) 
-
-The present invention is an advanced vehicle authorization system that detects, authenticates, and logs vehicle entry and exit using a combination of computer vision, OCR (Optical Character Recognition), and deep learning models. This system leverages sophisticated image recognition technology to automatically capture and decode vehicle license plate information, ensuring accurate identification. Upon detecting a vehicle, the system cross-references the recognized license plate with a pre-existing database of authorized vehicles, allowing for seamless and efficient entry authorization. The system also logs the entry and exits times, maintaining detailed records of all vehicle movements for security and administrative purposes. Integrating a deep learning model trained on a custom dataset ensures high accuracy in license plate recognition, even under challenging conditions such as poor lighting or varying angles. Real-time alerts are generated for unauthorized vehicles, triggering an immediate notification to security personnel for further action. Designed for ease of use, the system requires minimal operator intervention and can be deployed in various settings, including gated communities, parking facilities, and secure premises. Its robust and scalable architecture ensures reliable performance, providing a high level of security while maintaining smooth and efficient traffic flow. This invention represents a significant advancement in automated vehicle monitoring, reducing manual oversight, enhancing security, and streamlining vehicle access management.
-
-
-
-4. Detailed description of the invention 
-4.1  State of prior art 
-(a) Prevailing state of the art
-
-Ensuring secure and efficient vehicle entry management has become crucial for modern infrastructure. These are some of the current existing technologies that are implemented to solve the issue.
-
-? RFID-Based Authorization: Relies on radio frequency tags attached to vehicles, which are detected by RFID readers at entry points. Used in toll systems (FASTag) and secured parking but requires pre-registered vehicles.
-? Boom Barriers and Access Control: Physical barriers that open automatically upon verifying a vehicle through RFID, or remote access via cloud-based systems. Common in gated communities and restricted zones.
-? Bluetooth & UWB-Based Authentication: Smartphone-based Bluetooth access and Ultra-Wideband (UWB) signals allow seamless vehicle authentication without needing cameras or RFID tags.
-? GPS & Geofencing: Tracks vehicle locations in real-time using GPS and restricts movement using geofencing, commonly used in fleet management and security-sensitive areas.
-? Vehicle Fingerprinting: Identifies vehicles based on unique attributes like tire patterns, chassis numbers, or make/model recognition, adding an extra layer of verification beyond license plates.
-? Blockchain-Based Vehicle Logs: Ensures tamper-proof entry and exit logs for enhanced security, preventing unauthorized changes to vehicle records in high-security areas.
-
-(b) Literature search relating to this invention [Please include a copy of the resulting documentation, and reprints of publications.]
-
-An extensive literature survey was conducted to find publications and articles like the current proposed technology. 
-1. Scientific databases- Web of Science, Scopus, Google Scholar, ScienceDirect
-2. Patent databases- USTPO, EPO, WIPO, Intellectual property India (IPO)
-3. Publications:
-
-The following are the list of references, which are summarized.
-[1] Umamaheshwaran Iyer, Harini, and Sunita Dhavale. "Automatic Number Plate and Face Recognition System for Secure Gate Entry into Military Establishments." 2024 International Conference on Smart Systems for Applications in Electrical Sciences (ICSSES), IEEE, 2024.
-It presents a two-stage access-control pipeline for military gates that combines automatic number plate recognition with face detection and recognition. The system acquires synchronized vehicle and driver images, performs plate localization and OCR, then verifies the driver’s identity before granting entry. Reported results indicate a lower false-accept rate than ANPR-only baselines, with remaining challenges in low-light scenes, occlusions, and presentation attacks. The work also notes the need for secure data handling and illumination control for field deployment.
-[2] Singh, Inderjeet, et al. "Recognition System: Detection of License Plate." 2024 International Conference on Circuit Power and Computing Technologies (ICCPCT), IEEE, 2024.
-It focuses on the license-plate detection stage, comparing traditional edge or morphology methods with modern CNN-based detectors. Using roadside images with clutter, skew, and varying illumination, the study shows that current deep detectors localize plates more reliably than classical pipelines. The authors emphasize the need to re-train or fine-tune models for different plate templates and countries to achieve consistent performance.
-[3] Lekhana, G.C., and R. Srikantaswamy. "Real-Time License Plate Recognition System." National Conference on Emerging Trends in Technology (NCET-Tech), International Journal of Advanced Technology & Engineering Research (IJATER), 2012.
-It describes a real-time ALPR pipeline built from classical vision components: grayscale conversion, edge and morphological operations for plate localization, character segmentation, and template-matching recognition. The system runs with modest computation and works well under controlled conditions. Performance drops when fonts vary, plates are angled, or images suffer from blur and poor lighting, illustrating the limits of pre–deep learning approaches.
-[4] Du, Shan, et al. "Automatic License Plate Recognition (ALPR): A State-of-the-Art Review." IEEE Transactions on Circuits and Systems for Video Technology, IEEE, 2011.
-It provides a comprehensive 2011 survey of ALPR, covering plate detection, character segmentation, recognition methods, datasets, and evaluation metrics. The review identifies core challenges such as scale changes, illumination variation, rotation, occlusion, and background clutter. It establishes a taxonomy and research gaps that later deep-learning systems address.
-[5] He, K., Zhang, X., Ren, S., & Sun, J. (2016). Deep residual learning for image recognition. In Proceedings of the IEEE conference on computer vision and pattern recognition (CVPR) (pp. 770-778).
-It introduces deep residual learning and show that skip-connected residual networks enable very deep CNNs to train effectively. On ImageNet, ResNets achieved state-of-the-art accuracy at the time, demonstrating strong feature learning for vision tasks. Residual backbones subsequently became standard in detection and recognition models that power modern ALPR and face modules.
-[6] Zhao, W., Chellappa, R., Phillips, P. J., & Rosenfeld, A. (2003). Face recognition: A literature survey. ACM Computing Surveys (CSUR), 35(4), 399-458.
-It surveys face recognition up to 2003, organizing approaches into holistic, feature-based, and hybrid families. The article analyzes sensitivity to pose, illumination, expression, and occlusion, and reviews datasets and benchmarks used at the time. This taxonomy is useful when assessing modern deep systems for access control, which must still manage these covariates.
-[7] Sivakumar, P., et al. "Real-Time Crime Detection Using Deep Learning Algorithm." IEEE International Conference on System, Computation, Automation, and Networking (ICSCAN), 2021.
-It demonstrates real-time crime detection on CCTV streams using deep learning. The pipeline performs object or event detection and raises alerts with low latency, showing feasibility for live surveillance. Accuracy depends strongly on dataset diversity and deployment conditions, and the authors note risks of false positives and the importance of privacy considerations.
-
-
-
-(c) Prior art/patent search relating to this invention [Please include a copy of the resulting documentation, and reprints of patent documents: if a computer database search has been resorted to, please give the web site details and the Key Words used in the search.]
-Prior art patents address parts of the problem but remain isolated. US 11,468,408 B2 (0003a) describes visitor management with virtual tickets, but only for guest access. US 5,315,664 A (0003b) discloses early plate recognition, but accuracy is poor under real-world conditions. US 10,777,076 B2 (0003c) applies deep learning for plate recognition, yet it covers only vehicles. EP 4546290 A1 (0003d) uses edge-computing for faster ALPR, but still functions alone. US 11,783,589 B2 (0003e) employs AI/ML for plates but lacks pedestrian checks. US 11,393,269 B2 (0003f) integrates facial recognition with surveillance robots but omits vehicles. EP 3740897 B1 (0003g) improves OCR under compression yet is narrow in scope. US 2009/0202105 A1 (0003h) applies ALPR in tolling, not access control. US 11,875,582 B2 (0003i) reduces false positives, but still limited to LPR. US 12,056,589 B2 (0003j) handles varied plate formats, but only vehicles. US 12,008,815 B2 (0003k) manages devices via cloud, without anomaly or gate control. US 10,140,553 B1 (0003l) focuses on vehicle attributes, not complete access workflows.
-4.2 Description: (Describe the invention so that other expert who are knowledgeable in the field can evaluate its technical and commercial merits.)
-Kindly refer FORM 2 for detail description
-4.3 Novelty: (Highlight the features described above that make the invention novel.) 
-? The integration of all the functionalities in one single software that are Face recognition, License Plate Detection, Anomaly Detection, Traffic count.
-? We currently have these inventions but the current proposed system integrates all the functionalities.  
-? We have developed a software which can be directly implemented with current existing technology with minimal usage of new equipment.
-? We have used a custom dataset just to fit the different kinds of number plates that are found in INDIA.
-
-4.4 Inventiveness: (Are the novel features inventive based on 4.1(a) above; and, if so how?)
-
-4.5 Advantages (over comparable inventions or practices):
-* Fast & Efficient Authentication – Vehicle authorization in 1 second and pedestrian authentication in 3 seconds, ensuring smooth traffic flow.
-* Integrated Multi-Layer Security – Combines license plate recognition and facial recognition in one system, enhancing security without additional hardware.
-* Centralized Cloud Storage – All logs and data are stored securely in an SQL cloud database, ensuring data is accessible and safe.
-* Real-Time Monitoring & Automation – Eliminates manual entry for authorized vehicles, reducing security personnel workload.
-* Custom-Trained YOLO & OpenCV Models – High accuracy in Indian license plate detection and facial recognition under varied lighting conditions.
-* Manual Override System – In case of system failure, security teams can manually log entries and exits to ensure continuity.
-* Seamless Integration with Existing CCTV Systems – Can be connected to existing security infrastructure, minimizing additional installation costs.
-* Scalable & Customizable – New users and vehicles can be added without retraining the models, making it future-proof.
-* GDPR-Compliant Data Storage – Ensures privacy and secure handling of facial and vehicle data according to regulations.
-* Better Than RFID Systems – Unlike RFID authentication, this system does not require physical cards or tags, reducing maintenance and unauthorized access risks.
-
-4.6 Testing: (Has the invention been tested experimentally?)
-Yes, the invention was partially tested. Vehicle entry, vehicle density, visitor’s entry, Database update and Dashboard entry have been implemented successfully and running parallelly. Anomaly detection and Facial entry have been implemented separately need to integrate with the system.
-4.7  If so, details of experimental data
-Following are our implemented details.
-
-
-
-
-
-
-
-
-5. Funding and support 
-I. Was there significant use of Institute equipment and facilities? Yes
-II. Was the invention supported by research grants/contract from external sources? No
-If YES, please give details: 
-(a) Sponsor: 
-(b) Grant/contract no.: 
-(c) Period of grant/contract: 
-(d) Principal investigator and co-investigator: ____________________ 
-(even if they are not inventors within the purview of this document and will not share the credit and royalties)
-(e) Has the sponsor been informed of the invention? (state whether required under grant/contract award conditions)
-(f) Was the work done under any other agreement? Give details. 
-6. Information for protection of intellectual property rights: Conception and Disclosure (Accurate data is required as prior disclosure may affect possibility of obtaining patent rights.)
- Date  References/comments Date of conception of this invention. 
-Has this date been documented? 
-If so, where and how? September 2024The invention is currently in testing phase.Has this invention been presented at seminars/ discussions other than those which form the requirement for the degree program of the student? NoNoHas the invention been reduced to practice? NoThe invention has not been reduced to practice yet. No physical prototype has been developed or tested at this time.7. Commercial potential 
-7.1 Possible uses or application areas or products that may embody some aspects of the technology:
-
-The Enhanced Secure Entry and Management System (eSEMS) can be applied in a wide range of environments that require efficient, automated, and secure access control. Some potential application areas and products that can benefit from the technologies used in eSEMS include:
-
-i. Corporate and Government Buildings: Automated employee and vehicle access without manual verification, Real-time monitoring and logging for audit and compliance.
-ii. Smart Parking Systems: License Plate Recognition (LPR) for ticketless entry/exit and vehicle counting to manage space availability dynamically.
-iii. University and School Campuses: Facial recognition for student/staff attendance and entry logging of authorized vehicles for better safety.
-iv. Residential Gated Communities: Seamless access for residents and guests and anomaly detection for unauthorized vehicle entry.
-v. Industrial and Military Facilities: High-security access control for restricted areas and vehicle and personnel movement tracking for operational oversight.
-vi. Airports and Transportation Hubs: Automated vehicle check-in/out and real-time crowd and traffic flow monitoring.
-vii. Event Venues and Stadiums: Temporary access management for large crowds and facial recognition for VIP or staff entry zones.
-viii. Logistics and Warehousing Centers: Monitoring delivery vehicle movements and preventing unauthorized vehicle access.
-ix. Smart Cities: Integrated into broader urban security and traffic management systems and enhancing situational awareness for municipal authorities.
-x. Retail Malls and Commercial Complexes: Intelligent visitor management and entry-exit pattern analysis for customer flow optimization.
-
-
-7.2 List of probable users of the technology (class of industries/organizations or target companies):  
-Any industry/academics/Govt. offices
-7.3 List of probable organizations who may be interested in technology transfer (target industries or companies or other organisation): 
-Smart City Mission under the Ministry of Housing and Urban Affairs, National Highways Authority of India (NHAI), Indian Railways, Delhi Metro Rail Corporation (DMRC), State Transport Corporations (such as BMTC, BEST, and DTC), Ministry of Road Transport and Highways, Central Industrial Security Force (CISF), Border Security Force (BSF), State Police Departments (e.g., Maharashtra Police, Delhi Police), Indian Oil Corporation Limited (IOCL)
-
-7.4 Potential marketability including commercial suggestions [viable size of industry, equipment, raw material and manpower requirement under different skill levels, import component, export potential, other relevant economic information] 
-* Commercial Suggestions: The vehicle management system targets government agencies, smart city planners, transport authorities, and private infrastructure operators such as tech parks and logistics hubs. International markets with growing urban infrastructure, like the UAE and parts of Southeast Asia, also present export opportunities. A tiered pricing strategy—offering basic, advanced, and premium models—can help cater to different customer segments and use cases.
-* Raw Material Requirements: Key equipment includes IP cameras, microcontrollers, gate control units, and durable enclosures, along with AI software for detection and analytics. Most components can be sourced locally, with limited reliance on imported sensors or chipsets.
-* Manpower Requirements: Development and deployment require electronics engineers, AI developers, installation technicians, and support staff. Minimal training is needed for administrative users, and sales teams with public sector experience will be crucial for market outreach.
-* Economic Impact and Other Information: The system reduces manual labor costs, enhances security, and improves operational efficiency. It supports job creation in technology and service sectors, and aligns with national programs like Smart Cities and Digital India. Its modularity and scalability offer strong export potential and social value through improved safety and transparency.
-
-8. Prior disclosure and possible intent: 
-8.1 Has the invention been disclosed to industry representatives or their parties? 
-No
-8.2 Has any commercial organization shown interest in this invention? Give details. 
-No
-
-9. Declaration: 
-I/We declare that all statements made herein are true to the best of my/our knowledge. I/We hereby agree to hold the right of intellectual property of this invention jointly with National Institute of Technology, Rourkela. National Institute of Technology, Rourkela will share any royalty income derived from the invention with the inventor(s) according to the IP policy of the Institute in force. Intellectual Property of this invention will be protected by National Institute of Technology, Rourkela from time to time based on its merit and commercial viability.
- 
-S.No.NameSignatureDatePlace1.Majji Venkata Surya Tej08-09-2025Gayatri Vidya Parishad College of Engineering (A)2. Jahed Khan08-09-2025Gayatri Vidya Parishad College of Engineering (A)3.Manchiraju Manas08-09-2025Gayatri Vidya Parishad College of Engineering (A)4.Soumya Ranjan Sahu,08-09-2025NIT, Rourkela5Ajit Kumar Sahoo08-09-2025NIT, Rourkela5. Santos Kumar Das08-09-2025NIT Rourkela
-
-Note:  
-(1) A patent confers the right upon an inventor to commercially exploit an invention for a limited period of time. Patent can be lost by disclosure of the details of an invention to the public before the filling of a patent. Unlike copyright, patent is not an automatic right. To obtain a patent, the proposed invention should be novel (not published elsewhere), inventive (not obvious to person familiar with the state of art) and industrially applicable (should have utility). Once the patent is sealed, the patentee can sue for damages anyone who attempts to exploit the patented invention without the consent of the patentee. 
-(2) This document should be prepared with due care. The formal patent application will be prepared only from the information provided herein. 
-
-(3) The completed disclosure form with annexures should be submitted to: 
-
-Chairperson, IPIC
-National Institute of Technology Rourkela 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-F O R M - 2
-THE PATENT ACT 1970
-(39 OF 1970)
-&
-The Patents Rules, 2003
-
-COMPLETE SPECIFICATION
-(See section 10 and rule 13)
-
-TITLE OF THE INVENTION:  INTEGRATED EMPLOYEE AND VISITOR GATE ACCESS CONTROL SYSTEM.
-Name: NATIONAL INSTITUTE OF TECHNOLOGY
-Nationality: Indian (IN)
-Address: NATIONAL INSTITUTE OF TECHNOLOGY, ROURKELA -769 008
-INDIA, an Indian registered body incorporated under the Registration of Societies Act,
-(Act XXI of 1860).
-
-
-
-
-
-
-
-
-
-
-
-
-PREAMBLE TO THE DESCRIPTION
-The following specification particularly describes the invention and the manner in which it is to be performed.
-
-
-
-
-
-STATEMENT OF INVENTION:
-[0001] The present invention is broadly related to intelligent access control systems. It discusses a smart vehicle authorization and monitoring system that integrates license plate recognition, facial authentication, vehicle density estimation, and anomaly detection into a unified platform. The system leverages computer vision, OCR, and deep learning techniques to automatically detect and authenticate vehicles and pedestrians in real time. We propose an AI-driven mechanism that ensures seamless entry authorization, automated logging, and real-time alert generation, thereby enhancing security and operational efficiency while minimizing manual intervention.
-BACKGROUND OF INVENTION:
-[0002] Secure management of vehicle and pedestrian entry is a continuing challenge in high-security areas such as airports, gated communities, and corporate campuses. Existing methods like RFID, Bluetooth, GPS, and standalone license plate or facial recognition suffer from duplication risks, low adaptability, limited accuracy, and lack of integration. Traffic density monitoring and anomaly detection also work in isolation, leading to fragmented and costly systems.
-[0003] Prior art patents address parts of the problem but remain isolated. US 11,468,408 B2 (0003a) describes visitor management with virtual tickets, but only for guest access. US 5,315,664 A (0003b) discloses early plate recognition, but accuracy is poor under real-world conditions. US 10,777,076 B2 (0003c) applies deep learning for plate recognition, yet it covers only vehicles. EP 4546290 A1 (0003d) uses edge-computing for faster ALPR, but still functions alone. US 11,783,589 B2 (0003e) employs AI/ML for plates but lacks pedestrian checks. US 11,393,269 B2 (0003f) integrates facial recognition with surveillance robots but omits vehicles. EP 3740897 B1 (0003g) improves OCR under compression yet is narrow in scope. US 2009/0202105 A1 (0003h) applies ALPR in tolling, not access control. US 11,875,582 B2 (0003i) reduces false positives, but still limited to LPR. US 12,056,589 B2 (0003j) handles varied plate formats, but only vehicles. US 12,008,815 B2 (0003k) manages devices via cloud, without anomaly or gate control. US 10,140,553 B1 (0003l) focuses on vehicle attributes, not complete access workflows.
-[0004] These prior solutions highlight useful contributions but remain fragmented. The present invention overcomes these gaps by unifying license plate recognition, facial authentication, vehicle density monitoring, and anomaly detection into one AI-driven platform for real-time, automated, and scalable access control.
-OBJECTIVE OF THE INVENTION:
-[0005] The objective of the invention is to establish a secure, automated, and efficient access control system that authorizes vehicles and pedestrians in real time by integrating license plate recognition, facial authentication, vehicle density estimation, and anomaly detection into a single intelligent platform. 
-[0006] SUMMARY OF INVENTION:
-[0010] The proposed system is an AI-driven access management platform that integrates license plate recognition, facial authentication, vehicle density estimation, and anomaly detection into a unified solution. Using IP cameras as the primary input source, the system captures real-time video streams which are processed by computer vision and deep learning models. License plate information is extracted through OCR-based recognition and cross-referenced with an authorized database for vehicle access, while facial features of pedestrians are verified using a deep learning framework for identity authentication. A gate control mechanism forms a closed loop with the processing module, enabling automatic entry for authorized users and generating real-time alerts for unauthorized or suspicious activities.
-[0011] All events, including vehicle and pedestrian entry or exit, are automatically logged into a centralized SQL database accessible via an administrator dashboard. This interface allows security personnel to monitor live feeds, review authentication logs, analyze traffic density, and manually override system decisions when necessary. By consolidating multiple security features into a single platform, the invention ensures fast, accurate, and scalable access control suitable for smart cities, transportation hubs, residential complexes, and high-security facilities, thereby enhancing both operational efficiency and overall security. 
-
-[0013] BRIEF DESCRIPTION OF THE DRAWINGS
-[0014] FIG. 1 is the Block diagram of the Proposed System
-[0015] FIG. 2 is the Block diagram of the Camera and Video Capture Module
-[0016] FIG. 3 is the Block diagram of the AI Processing Module
-[0017] FIG. 4 is the Block diagram of the Navigation Module
-[0018] FIG. 5 is the Block diagram of the Log Entry Module
-[0019] FIG. 6 is the Block diagram of the Admin Dashboard Module
-[0020] FIG. 7 is the Block diagram of the Alert Generation Module
-[0021] FIG. 8 is the Block diagram of the Database Module
-[0022] FIG. 9 is the flow chart of entire process
-[0023] FIG. 10 Real-Time Enforcement System
-DETAILED DESCRIPTION:
-[0024] Detailed description of the proposed invention is given below.
-[0025] Figure 1 illustrates an overview of a proposed system 100 comprising a plurality of interconnected modules, each serving distinct but cooperative functionalities. The system integrates modules such as a Camera and Video Capture Module 101, an AI Processing Module 102, a Navigation Module 103, a Log Entry Module 104, an Admin Dashboard Module 105, an Alert Generation Module 106, and a Database Module 107. These modules communicate bidirectionally through a central Microcontroller 108, which facilitates coordination, data flow, and decision-making across the entire vehicle management infrastructure.
-[0026] As shown in Figure 2, the Camera and Video Capture Module 101 comprise an IP Camera 1011 and a Transmission unit 1012. The IP Camera 1011 is configured to capture real-time video data within the premises. The captured footage is transmitted via the Transmission unit 1012, enabling real-time data availability for downstream processing by the AI Processing Module 102. This module acts as the front-end sensory mechanism of the system.
-[0027] Figure 3 depicts the AI Processing Module 102, which processes video and image data using artificial intelligence techniques. The module includes several subcomponents: Vehicle Detection 1021, License Plate Detection 1023, and Face Detection 1025. The Vehicle Detection component 1021 is linked to a Counting unit 1022 for determining vehicular density. License Plate Detection 1023 feeds data into a Text Extraction unit 1024, which retrieves alphanumeric details from the plates. Simultaneously, Face Detection 1025 interfaces with a Feature Extraction unit 1026, enabling identification. The outputs from Text Extraction 1024 and Feature Extraction 1026 are passed into a Comparison module 1027, which conducts data matching against stored records for verification and access control.
-[0028] As shown in Figure 4, the Navigation Module 103 governs the physical movement of vehicles through controlled access points. It comprises a Gate Control unit 1031 interfacing with an Entry node 1032 and an Exit node 1033. The Gate Control 1031 component determines the actuation of gates based on identification or authorization provided by upstream processing. This ensures regulated and logged ingress and egress of vehicles.
-[0029] Figure 5 illustrates the Log Entry Module 104, which is responsible for logging temporal data for each event within the system. The module includes a Time Stamps component 1041 that records entry and exit times, which are then processed by a Density calculation unit 1042 to assess crowd or vehicle load conditions. This module facilitates historical data tracking and supports density-based analytics for enhanced operational efficiency.
-[0030] As illustrated in Figure 6, the Admin Dashboard Module 105 enables administrative control and monitoring through a User Interface 1051. This interface is designed for interaction with authorized personnel, allowing for the review of events and system status. A Data Visualization unit 1052 provides graphical representation of logs, alerts, and system statistics, thereby enabling intuitive and efficient management of the vehicle environment.
-[0031] Figure 7 shows the Alert Generation Module 106, which is responsible for initiating alerts based on predefined triggers. The module includes a Siren component 1061 for audible signalling and a Notification unit 1062 for electronic alerts such as SMS or system-level messages. These components may be activated upon unauthorized access, abnormal density thresholds, or AI-based detection of threats or anomalies.
-[0032] As shown in Figure 8, the Database Module 107 stores all relevant data, including real-time and historical records. The central Details unit 1071 acts as the core data repository, linking Authorized 1072 entities—classified into Vehicles 1073 and Persons 1074—with Entry/Exit logs 1075. Entry/Exit logs are further categorized into Visitors 1076 and Employees 1077; the latter being associated with Stamps 1078 used for authentication or timekeeping. This module provides the backbone for authentication, record keeping, and audit trails.
-[0033] The Microcontroller 108, depicted centrally in Figure 1, orchestrates the interactions among all aforementioned modules. It facilitates seamless data flow from the Camera and Video Capture Module 101 to the AI Processing Module 102 for intelligent interpretation. Navigation control is actuated based on AI-derived insights via the Navigation Module 103. Simultaneously, time-based and density data are logged by the Log Entry Module 104, while alerts are autonomously generated by the Alert Generation Module 106 in real-time. Administrative visibility is ensured through the Admin Dashboard Module 105, and all data exchanges are securely stored and referenced in the Database Module 107. This integrated system ensures robust vehicle management with high reliability, security, and automation.
-[0034] Figure 8 illustrates a detailed flowchart for a smart surveillance and entry management system, starting from 200. The system branches into three primary modules: Surveillance Management 201, Entry Management 212, and employee-specific processes under Employees 216.Within the Surveillance Management 201 module, two functionalities are executed: Vehicle Density 202 and Anomaly Detection 207. Both begin by acquiring Camera Feed 203 and 208, respectively. In the case of vehicle monitoring, a Region of Interest (ROI) is drawn in 204, followed by Vehicle Detection 205, and the system then performs Vehicle Counting 206. For anomaly detection, the system processes the camera input by defining the ROI in 209, detecting any abnormal activity through Anomaly Detection 210, and generating corresponding alerts in Alert Generation 211.
-[0035] Parallelly, the Entry Management 212 module handles both Visitors 213 and Employees 216. For visitors, the system captures identification through Take Details 214 and Store Proofs 215. On the employee side, the system handles Registration 217, collecting credentials via Take Details 218, which are stored in a Database Store 219. Once registered, the employee entry and exit processes are managed by Entry/Exit 220, which splits into two branches: Vehicles 221 and Pedestrians 227. For vehicles, the system captures the Camera Feed 222, performs Vehicle Detection 223, then proceeds to License Plate Detection 224, followed by Text Extraction 225. This data is then verified in Compare 226. For pedestrian access, Camera Feed 228 is analyzed to Detect Person 229, then Detect Face 230, with facial features extracted in Extract Features 231 and verified in Compare 232.
-[0036] After successful comparison in either path, the system proceeds to Authenticate 233 the individual or vehicle. Upon authentication, it executes Navigate 234, which handles the routing for entry, exit, or alert functions. Every event is logged via Log Entry 235, followed by a Database Update 236, and a real-time Dashboard Update 237 before concluding at 238.
-[0037] The Real-Time Enforcement System 300, depicted in Figure 10, forms the hardware-based implementation of the proposed solution. The License Plate Processing Unit 301 is situated at the entrance to read and confirm the authorization of a vehicle before allowing entry. The Vehicle Density Evaluation Feature 302 scans the number of vehicles headed toward the gate and on the road and allows this data to be used to make dynamic route changes and manage traffic. The Operations Panel 303 is the operational review panel where guards or supervisors can view what is happening internally or respond if they determine it is needed. The Dashboard 304 provides real-time information to people about their authorization, restrictions, volume of traffic, and log information, thus providing public visibility. The LED and Gate Control Feature 305 moves the gate to allow or deny entry and provides a signal (traffic-light type signal) to the individual. These hardware features provide a fully integrated application, which is a working real-time implementation of the system that connects the automated decision-making process to the people responsible for its real-world implementation.
-
-CLAIMS:
-We claim:
-1. An intelligent vehicle and pedestrian access control system which integrates license plate recognition, facial authentication, vehicle density monitoring, and anomaly detection into a unified platform for real-time authorization and security management.
-2. The system of claim 1, wherein the vehicle authorization module comprises an IP camera and an OCR-based license plate recognition engine that detects, extracts, and verifies alphanumeric details of a vehicle against a pre-registered database.
-3. The system of claim 1, wherein the pedestrian authentication module employs a facial recognition framework based on deep learning to extract facial features and compare them against stored embedding for identity verification.
-4. The system of claim 1, wherein a vehicle density and anomaly detection unit utilizes deep learning models to continuously monitor traffic flow, detect abnormal behaviour, and generate real-time alerts.
-5. The system of claim 1, wherein the gate control mechanism forms a closed-loop with the AI processing module to enable automatic gate operation for authorized entries and prevent access for unauthorized vehicles or individuals.
-6. The system of claim 1, wherein all entry and exit events are timestamped and logged in a centralized SQL database, accessible through an administrator dashboard for real-time monitoring, manual override, and report generation.
-7. The system of claim 1, wherein the administrator dashboard provides live camera feeds, authentication logs, density statistics, and alert notifications to authorized security personnel through a web-based interface.
-8. The system of claim 1, wherein the invention is configured to integrate with existing CCTV infrastructure and security systems with minimal additional hardware requirements.
-9. The system of claim 1, wherein the integration of license plate recognition, facial authentication, anomaly detection, and vehicle density monitoring into a single software platform constitutes a novel feature over existing standalone solution.
-10. The system of claim 1, wherein the use of a custom dataset tailored for diverse Indian license plate formats enhances recognition accuracy under varied real-world conditions, representing a novel adaptation for regional deployment.
-
-          Majji Venkata Surya Tej, Jahed Khan and Manchiraju Manas, of Gayatri Vidya Parishad College of Engineering (A)
-and Soumya ranjan sahu , Ajit Kumar sahoo and Santos Kumar Das
-of National Institute of Technology, Rourkela 769008
-Dated this 16th day of October, 2025.
-
-Title of Invent
-INTEGRATED EMPLOYEE AND VISITOR GATE ACCESS CONTROL SYSTEM.
-Abstract: 
-The Enhanced Secure Entry and Management System (eSEMS) is a solution for the automated security management of gated properties that utilizes AI to aid in access control. The eSEMS consists of three modules: License Plate Recognition (LPR) for vehicle identification, Facial Recognition for pedestrian identification, and Traffic Density and Anomaly Detection for live monitoring. First, vehicles are identified from IP camera footage with additional image processing using OpenCV and PaddleOCR software. Once a vehicle is identified as a valid access request, access is automatically granted for LPR-registered entries, whereas all other requests are logged and require verification by a security guard or authorized personnel. Second, pedestrian access is managed using a DeepFace-based facial recognition model that allows for speedy and scalable verification without requiring retraining at decreed periodic intervals. Third, every vehicle is counted in real time using a custom-trained YOLO model and monitored in the prescribed security zones for anomalies. All authentication and monitoring, actions, and reporting information are stored in a centralized cloud SQL database. Security personnel can access the eSEMS from a compatible desktop or mobile device via a web interface to monitor live feeds, log verification decisions, and override access requests. Traffic reports are generated regularly for management and security considerations and adjustments as needed, linking to an overall fully automated, managed, efficient, and scalable access management and security control solution for corporate clients, government entities, and high-security facilities.
-DRAWINGS:
-
-
-FIG. 1
-
-
-FIG. 2   
-
-FIG. 3
-
-
-FIG. 4
-
-FIG. 5  
-
-FIG. 6
-
-
-FIG. 7
-
-
-
-
-FIG. 8
-
-
-
-
-
-
-FIG. 9
-
-
-
-FIG. 10
-
-
-
-1
-
-
