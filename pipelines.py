@@ -56,7 +56,7 @@ class QGPipeline:
         else:
             self.model_type = "bart"
 
-    def __call__(self, inputs: str):
+    def __call__(self, inputs: str, retrieved_context: Optional[str] = None, embedder=None):
         inputs = " ".join(inputs.split())
         sents, answers = self._extract_answers(inputs)
         flat_answers = list(itertools.chain(*answers))
@@ -78,11 +78,19 @@ class QGPipeline:
         
         for example, que in zip(qg_examples, questions):
             answer = example['answer']
-            distractors = self._get_distractors(answer, all_answers)
+            from distractors import build_validated_mcq
+            distractors, validation = build_validated_mcq(
+                que,
+                answer,
+                retrieved_context or inputs,
+                all_answers,
+                embedder=embedder,
+            )
             output.append({
                 'answer': answer, 
                 'question': que,
-                'distractors': distractors
+                'distractors': distractors,
+                'mcq_validation': validation,
             })
         return output
     

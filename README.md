@@ -15,6 +15,7 @@ Try the hosted app here: https://ai-question-master.streamlit.app/
 - **📖 Study Guide**: Unified view of key facts extracted from text and exploratory questions with revealable answers.
 - **💡 Smart Assistant**: A chat-style interface for asking custom questions about your documents with hallucination detection.
 - **⚡ Unified UI**: Single-click generation for all models (Answer-Aware, End-to-End, and QA).
+- **🔎 Semantic Retrieval**: Chunks documents into an indexed FAISS store so topic-focused generation and assistant questions use relevant passages instead of the full document.
 - **🛠️ Robust Extraction**: Uses `pdfplumber` for layout-aware text extraction from complex PDFs.
 
 ## 🛠️ Setup & Installation
@@ -35,12 +36,12 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 The app will be available at `http://localhost:8501`.
-
 Live hosted app: https://ai-question-master.streamlit.app/
 
 If you are using Windows PowerShell and the project virtual environment, activate it first:
 ```powershell
-.\.venv\Scripts\Activate.ps1
+.\product\Scripts\Activate.ps1
+streamlit run app.py
 ```
 
 ## 🧠 Project Architecture
@@ -51,7 +52,8 @@ This project utilizes fine-tuned **T5 (Text-to-Text Transfer Transformer)** mode
 2.  **Question Generation (QG)**: Generates questions specifically tailored to the extracted answers using the "Highlight" format.
 3.  **End-to-End QG**: Generates broader, exploratory questions directly from the context.
 4.  **Question Answering (QA)**: Provides answers to both generated and user-defined questions.
-5.  **Timed Quiz Flow**: Moves selected generated questions into a dedicated quiz screen with live countdown and auto-submit.
+5.  **Retrieval-Augmented Generation**: Uses Sentence Transformers and FAISS to retrieve relevant document chunks for question generation and question answering.
+6.  **Timed Quiz Flow**: Moves selected generated questions into a dedicated quiz screen with live countdown and auto-submit.
 
 ### MCQ Generation Logic
 Distractors are generated using a multi-step heuristic:
@@ -59,9 +61,21 @@ Distractors are generated using a multi-step heuristic:
 -   **Contextual Fallback**: Uses other potential answers found in the document.
 -   **Smart Fillers**: Logical placeholders for edge cases.
 
+### Processing Time
+Question generation can take longer for large documents because the fine-tuned T5 models perform answer extraction and question generation over the retrieved text. The RAG layer also creates embeddings for document chunks before searching for relevant passages.
+
+The first run is usually slower because the Transformer and Sentence Transformer models must be loaded, and the embedding model may need to be downloaded. Later runs are faster because Streamlit caches the loaded models.
+
+For faster results:
+- Use a focused topic in the **Topic / Focus** field.
+- Start with a short text or a few paragraphs when testing.
+- Reduce the **Max Questions per Type** setting.
+- Use a GPU-enabled PyTorch installation when available; CPU inference is considerably slower.
+
 ## 📂 Project Structure
 
 - `app.py`: The primary Streamlit UI and application logic.
+- `rag.py`: Document chunking, embedding, FAISS indexing, and semantic retrieval.
 - `pipelines.py`: Core inference logic for all QG and QA tasks.
 - `utils.py`: Utility functions for data processing and distractor generation.
 - `notebooks/`: Exploration and training notebooks.
@@ -88,6 +102,7 @@ Distractors are generated using a multi-step heuristic:
 ## 📝 Usage Tips
 
 -   **Context Length**: For best results, use paragraphs of 3-5 sentences.
+-   **Topic Focus**: Enter an optional topic before generating to focus results on relevant parts of a long document. The Smart Assistant retrieves relevant passages automatically for each question.
 -   **PDF Quality**: Ensure PDFs are text-based (not scanned images) for accurate extraction.
 -   **Settings**: Use the "Max Questions" slider to control the volume of generated content.
 -   **Quiz Mode**: Use `Take Quiz` to switch into the dedicated timed quiz screen.
@@ -96,3 +111,9 @@ Distractors are generated using a multi-step heuristic:
 ## 📜 Acknowledgments
 
 This project is built using the 🤗 [Transformers](https://github.com/huggingface/transformers) library and Streamlit.
+
+
+
+
+For permanent storage, you would need an external database or storage service such as a cloud bucket, hosted vector database, or a committed prebuilt index.
+is it possible for external database in streamlit

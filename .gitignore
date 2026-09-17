@@ -50,7 +50,11 @@ nltk_data/
 data/squad_multitask/dummy/
 data/squad_multitask/dataset_infos.json
 data/squad_multitask/*.lock
+rag_cache/
 *.pt
 *.bin
 *.out
 *.log
+*patent*
+*Institute*
+*PROJECT_EXPLANATION*
