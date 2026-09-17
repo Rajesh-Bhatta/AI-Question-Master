@@ -6,6 +6,17 @@ import random
 import re
 import time
 
+
+@st.cache_resource
+def load_rag_embedder():
+    from sentence_transformers import SentenceTransformer
+    return SentenceTransformer("all-MiniLM-L6-v2")
+
+
+def get_retrieval_store(context):
+    from rag import build_vector_store
+    return build_vector_store(context, load_rag_embedder())
+
 # Ensure nltk resources are available
 nltk_data_path = os.path.join(os.getcwd(), 'nltk_data')
 if nltk_data_path not in nltk.data.path:
@@ -235,6 +246,10 @@ if 'e2e_results' not in st.session_state:
     st.session_state.e2e_results = []
 if 'qa_history' not in st.session_state:
     st.session_state.qa_history = []
+if 'rag_store' not in st.session_state:
+    st.session_state.rag_store = None
+if 'rag_source' not in st.session_state:
+    st.session_state.rag_source = ""
 if 'app_view' not in st.session_state:
     st.session_state.app_view = "home"
 if 'quiz_context' not in st.session_state:
@@ -271,6 +286,8 @@ with st.sidebar:
         st.session_state.qg_results = []
         st.session_state.e2e_results = []
         st.session_state.qa_history = []
+        st.session_state.rag_store = None
+        st.session_state.rag_source = ""
         st.session_state.quiz_context = ""
         st.session_state.app_view = "home"
         st.session_state.quiz_items = []
@@ -341,6 +358,10 @@ with col_input:
 with col_action:
     st.write("### ⚙️ Settings")
     max_questions = st.slider("Max Questions per Type", min_value=1, max_value=20, value=5)
+    topic_query = st.text_input(
+        "Topic / Focus (optional)",
+        placeholder="e.g., normalization, transactions, indexing",
+    )
     generate_btn = st.button("Generate Everything", type="primary")
     st.write("")
     st.write("")
@@ -360,11 +381,29 @@ if generate_btn:
         else:
             with st.spinner("Hold on tight .. I am thinking..."):
                 try:
+                    if st.session_state.rag_source != context or st.session_state.rag_store is None:
+                        st.session_state.rag_store = get_retrieval_store(context)
+                        st.session_state.rag_source = context
+                    retrieved_chunks = st.session_state.rag_store.retrieve(topic_query, top_k=3)
+                    if not retrieved_chunks:
+                        st.info("No relevant text was found for that topic.")
+                        st.stop()
+
                     qg_nlp = load_pipeline("question-generation")
                     e2e_nlp = load_pipeline("e2e-qg")
-                    
-                    st.session_state.qg_results = qg_nlp(context)[:max_questions]
-                    e2e_raw = e2e_nlp(context)
+
+                    st.session_state.qg_results = []
+                    e2e_raw = []
+                    for retrieved in retrieved_chunks:
+                        st.session_state.qg_results.extend(
+                            qg_nlp(
+                                retrieved.text,
+                                retrieved_context=retrieved.text,
+                                embedder=load_rag_embedder(),
+                            )
+                        )
+                        e2e_raw.extend(e2e_nlp(retrieved.text))
+                    st.session_state.qg_results = st.session_state.qg_results[:max_questions]
                     
                     qg_questions_norm = {normalize_question(res['question']) for res in st.session_state.qg_results}
                     deduped_e2e = []
@@ -399,7 +438,8 @@ if st.session_state.qg_results or st.session_state.e2e_results:
             for i, q in enumerate(st.session_state.e2e_results):
                 with st.expander(f"Question: {q}"):
                     if st.button("Reveal Answer", key=f"reveal_{i}"):
-                        ans = qa_nlp({"question": q, "context": context})
+                        answer_context = st.session_state.rag_store.retrieve(q, top_k=1)[0].text
+                        ans = qa_nlp({"question": q, "context": answer_context})
                         st.write(f"**Answer:** {ans}")
 
     with tab2:
@@ -409,7 +449,13 @@ if st.session_state.qg_results or st.session_state.e2e_results:
             if user_q:
                 qa_nlp = load_pipeline("multitask-qa-qg")
                 with st.spinner("Finding answer..."):
-                    ans = qa_nlp({"question": user_q, "context": context})
+                    if st.session_state.rag_source != context or st.session_state.rag_store is None:
+                        st.session_state.rag_store = get_retrieval_store(context)
+                        st.session_state.rag_source = context
+                    retrieved_context = "\n\n".join(
+                        chunk.text for chunk in st.session_state.rag_store.retrieve(user_q, top_k=2)
+                    )
+                    ans = qa_nlp({"question": user_q, "context": retrieved_context})
                     st.session_state.qa_history.append({"q": user_q, "a": ans})
             else:
                 st.warning("Please type a question.")
